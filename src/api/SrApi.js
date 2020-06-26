@@ -1,19 +1,14 @@
 import config from './config.json';
 
+const HTTP_POST = 'POST';
+const HTTP_PATCH = 'PATCH';
+const HTTP_DELETE = 'DELETE';
 const MOVIES_URL = config.srApiHost + 'v1/movies/';
+const HEADERS = {
+    'Content-Type': 'application/json'
+};
 
 const SrApi = {
-    addMovie(movieData) {
-        return fetch(MOVIES_URL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(movieData)
-        }).then(response => response.json())
-            .catch(error => console.error(error));
-    },
-
     getMovies() {
         return fetch(MOVIES_URL)
             .then(response => response.json())
@@ -26,24 +21,28 @@ const SrApi = {
             .catch(error => console.error(error));
     },
 
-    deleteMovie(id) {
+    addMovie(movieData) {
         return fetch(MOVIES_URL, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({id})
+            method: HTTP_POST,
+            headers: HEADERS,
+            body: JSON.stringify(movieData)
         }).then(response => response.json())
             .catch(error => console.error(error));
     },
 
     updateMovie(id, movieData) {
-        return fetch(MOVIES_URL, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+        return fetch(MOVIES_URL + id, {
+            method: HTTP_PATCH,
+            headers: HEADERS,
             body: JSON.stringify(movieData)
+        }).then(response => response.json())
+            .catch(error => console.error(error));
+    },
+
+    deleteMovie(id) {
+        return fetch(MOVIES_URL + id, {
+            method: HTTP_DELETE,
+            headers: HEADERS
         }).then(response => response.json())
             .catch(error => console.error(error));
     }
