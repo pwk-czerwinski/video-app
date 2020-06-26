@@ -5,7 +5,13 @@ function Video({ title, description, url }) {
         <div>
             <h3>{ title }</h3>
             <p>{ description }</p>
-            <a href={ url }>Link</a>
+            <iframe
+                width="320"
+                height="240"
+                title={title}
+                src={url}
+                allowFullScreen={true}
+            />
         </div>
     );
 }

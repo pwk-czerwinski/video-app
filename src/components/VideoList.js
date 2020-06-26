@@ -6,7 +6,10 @@ function VideoList() {
     const [ movies, setMovies ] = useState([]);
 
     useEffect(() => {
-        SrApi.getMovies().then(movies => setMovies(movies));
+        SrApi.getMovies().then(movies => {
+            movies = movies.filter(movie => movie.video_url.includes('youtube') && movie.video_url.length > 20);
+            setMovies(movies)
+        });
     }, []);
 
     return(
@@ -16,7 +19,7 @@ function VideoList() {
                     key={movie.id }
                     title={movie.title}
                     description={movie.description}
-                    url={movie.video_url}
+                    url={movie.video_url.replace('watch?v=', 'embed/')}
                 />)
             }
         </div>
