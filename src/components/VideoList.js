@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Video from "./Video";
-import SrApi from "../api/SrApi";
+import Video from './Video';
+import SrApi from '../api/SrApi';
 
 function VideoList() {
     const [ movies, setMovies ] = useState([]);
