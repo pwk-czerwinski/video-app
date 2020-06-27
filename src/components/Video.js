@@ -1,11 +1,11 @@
 import React from 'react';
 
-function Video({ title, description, url }) {
+function Video({ title, description, url, width, height }) {
     return(
         <div className="item">
             <iframe
-                width="320"
-                height="240"
+                width={width}
+                height={height}
                 title={title}
                 src={url}
                 allowFullScreen={true}
