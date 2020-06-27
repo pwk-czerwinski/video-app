@@ -38,15 +38,31 @@ const VideoCreateForm = () => {
 
     return (
         <div className="container">
-            <form onSubmit={handleSubmit} autoComplete="off">
-                <label htmlFor="title">Title</label><br />
-                <input type="text" id="title" name="title" value={title} onChange={handleTitleChange} /><br />
-                <label htmlFor="description">Description</label><br />
-                <input type="text" id="description" name="description" value={description} onChange={handleDescriptionChange} /><br />
-                <label htmlFor="video_url">Video URL</label><br />
-                <input type="text" id="video_url" name="video_url" value={videoUrl} onChange={handleVideoUrlChange} /><br />
-                <input type="submit" value="Add video" />
-            </form>
+                <form id="video-form" onSubmit={handleSubmit} autoComplete="off">
+                    <div className="row">
+                        <div className="col-12">
+                            <label htmlFor="title">Title</label><br />
+                            <input type="text" id="title" name="title" value={title} onChange={handleTitleChange} /><br />
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-12">
+                            <label htmlFor="description">Description</label><br />
+                            <input type="text" id="description" name="description" value={description} onChange={handleDescriptionChange} /><br />
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-12">
+                            <label htmlFor="video_url">Video URL</label><br />
+                            <input type="text" id="video_url" name="video_url" value={videoUrl} onChange={handleVideoUrlChange} /><br />
+                        </div>
+                    </div>
+                </form>
+                <div className="row">
+                    <div className="col-12">
+                        <button type="submit" form="video-form">Add video</button>
+                    </div>
+                </div>
         </div>
     );
 }

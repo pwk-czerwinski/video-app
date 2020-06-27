@@ -11,7 +11,6 @@ const VideoDetails = (props) => {
         SrApi.getMovie(props.match.params.id).then(movie => {
             setTitle(movie.title);
             setDescription(movie.description);
-            console.log(movie.video_url);
             setVideoUrl(movie.video_url);
         });
     }, [props.match.params.id]);

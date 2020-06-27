@@ -2,7 +2,7 @@ import React from 'react';
 
 function Video({ title, description, url, width, height }) {
     return(
-        <div className="item">
+        <>
             <iframe
                 width={width}
                 height={height}
@@ -12,7 +12,7 @@ function Video({ title, description, url, width, height }) {
             />
             <h3>{ title }</h3>
             <p>{ description }</p>
-        </div>
+        </>
     );
 }
 

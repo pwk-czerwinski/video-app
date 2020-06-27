@@ -22,10 +22,15 @@ function VideoList() {
     }, []);
 
     return(
-        <div className="container">
-            <div className="content">
+        <div className="container-fluid">
+            <div className="row">
+                <div className="col-12">
+                    <NavLink to="/video/create"><button>Add New Video</button></NavLink>
+                </div>
+            </div>
+            <div className="row video-list">
                 { movies.map(movie =>
-                    <div key={movie.id }>
+                    <div key={movie.id } className="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 video-item">
                         <Video
                             title={movie.title}
                             description={movie.description}
@@ -33,8 +38,12 @@ function VideoList() {
                             width={320}
                             height={240}
                         />
-                        <NavLink to={`/video/${movie.id}`}><button>More Details</button></NavLink><br/>
-                        <NavLink to={`/video/${movie.id}/update`}><button>Edit</button></NavLink><br/>
+                        <NavLink to={`/video/${movie.id}`}>
+                            <button>More Details</button>
+                        </NavLink>
+                        <NavLink to={`/video/${movie.id}/update`}>
+                            <button>Edit</button>
+                        </NavLink>
                         <button onClick={() => deleteMovie(movie.id)}>Delete</button>
                     </div>
                     )
