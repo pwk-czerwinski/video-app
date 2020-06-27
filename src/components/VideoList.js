@@ -13,7 +13,7 @@ function VideoList() {
     }, []);
 
     return(
-        <div>
+        <div className="content">
             { movies.map(movie =>
                 <Video
                     key={movie.id }

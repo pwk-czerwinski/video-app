@@ -1,11 +1,14 @@
 import React from 'react';
 import VideoList from './VideoList';
+import Header from './Header';
 
 function VideoApp() {
   return (
       <div>
-          <h1>Videos</h1>
-          <VideoList />
+          <Header />
+          <div className="container">
+            <VideoList />
+          </div>
       </div>
   );
 }

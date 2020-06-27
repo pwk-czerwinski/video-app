@@ -2,9 +2,7 @@ import React from 'react';
 
 function Video({ title, description, url }) {
     return(
-        <div>
-            <h3>{ title }</h3>
-            <p>{ description }</p>
+        <div className="item">
             <iframe
                 width="320"
                 height="240"
@@ -12,6 +10,8 @@ function Video({ title, description, url }) {
                 src={url}
                 allowFullScreen={true}
             />
+            <h3>{ title }</h3>
+            <p>{ description }</p>
         </div>
     );
 }
