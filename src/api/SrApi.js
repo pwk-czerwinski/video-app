@@ -3,7 +3,7 @@ import config from './config.json';
 const HTTP_POST = 'POST';
 const HTTP_PATCH = 'PATCH';
 const HTTP_DELETE = 'DELETE';
-const MOVIES_URL = config.srApiHost + 'v1/movies/';
+const MOVIES_URL = config.srApi.host + 'v1/movies/';
 const HEADERS = {
     'Content-Type': 'application/json'
 };
