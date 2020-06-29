@@ -32,7 +32,7 @@ const VideoUpdateForm = (props) => {
                 title,
                 description,
                 video_url: videoUrl
-            });
+            }).then(movie => alert(movie.title + ' has been changed'));
         }
     }
 
@@ -46,15 +46,15 @@ const VideoUpdateForm = (props) => {
 
     return (
         <div className="container">
-            <form id="video-form" onSubmit={handleSubmit} autoComplete="off">
+            <form id="video-edit-form" className="video-form" onSubmit={handleSubmit} autoComplete="off">
                 <label htmlFor="title">Title</label><br />
-                <input type="text" id="title" name="title" value={title} onChange={handleTitleChange} /><br />
+                <input type="text" id="title" name="title" className="video-form-input" value={title} onChange={handleTitleChange} /><br />
                 <label htmlFor="description">Description</label><br />
-                <input type="text" id="description" name="description" value={description} onChange={handleDescriptionChange} /><br />
+                <input type="text" id="description" name="description" className="video-form-input" value={description} onChange={handleDescriptionChange} /><br />
                 <label htmlFor="video_url">Video URL</label><br />
-                <input type="text" id="video_url" name="video_url" value={videoUrl} onChange={handleVideoUrlChange} /><br />
+                <input type="text" id="video_url" name="video_url" className="video-form-input" value={videoUrl} onChange={handleVideoUrlChange} /><br />
             </form>
-            <button type="submit">Update video</button>
+            <button type="submit" form="video-edit-form" className="btn-edit video-form-input">Update video</button>
         </div>
     );
 }

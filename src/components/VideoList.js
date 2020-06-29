@@ -7,11 +7,13 @@ function VideoList() {
     const [ movies, setMovies ] = useState([]);
 
     const deleteMovie = id => {
-        SrApi.deleteMovie(id);
-        SrApi.getMovies().then(movies => {
-            movies = movies.filter(movie => movie.video_url.includes('youtube') && movie.video_url.length > 20);
-            setMovies(movies)
-        });
+        SrApi.getMovie(id).then(movie => {
+            SrApi.deleteMovie(id).then(() => SrApi.getMovies().then(fetchedMovies => {
+                fetchedMovies = fetchedMovies.filter(movie => movie.video_url.includes('youtube') && movie.video_url.length > 20);
+                setMovies(fetchedMovies);
+                alert(movie.title + ' has been deleted');
+            }));
+        })
     }
 
     useEffect(() => {
@@ -25,7 +27,9 @@ function VideoList() {
         <div className="container-fluid">
             <div className="row">
                 <div className="col-12">
-                    <NavLink to="/video/create"><button>Add New Video</button></NavLink>
+                    <div className="new-video">
+                        <NavLink to="/video/create"><button className="btn-add-new">Add New Video</button></NavLink>
+                    </div>
                 </div>
             </div>
             <div className="row video-list">
@@ -39,12 +43,12 @@ function VideoList() {
                             height={240}
                         />
                         <NavLink to={`/video/${movie.id}`}>
-                            <button>More Details</button>
+                            <button className="btn-more-details">More Details</button>
                         </NavLink>
                         <NavLink to={`/video/${movie.id}/update`}>
-                            <button>Edit</button>
+                            <button className="btn-edit">Edit</button>
                         </NavLink>
-                        <button onClick={() => deleteMovie(movie.id)}>Delete</button>
+                        <button className="btn-delete" onClick={() => deleteMovie(movie.id)}>Delete</button>
                     </div>
                     )
                 }

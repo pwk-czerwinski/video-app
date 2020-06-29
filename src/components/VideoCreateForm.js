@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import SrApi from '../api/SrApi';
+import {NavLink, Redirect} from 'react-router-dom';
 
 const VideoCreateForm = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [videoUrl, setVideoUrl] = useState('');
+    const [addedNewMovie, setAddedNewMovie] = useState(false);
 
     const handleTitleChange = (e) => {
         setTitle(e.target.value);
@@ -32,35 +34,39 @@ const VideoCreateForm = () => {
                 title,
                 description,
                 video_url: videoUrl.replace('watch?v=', 'embed/')
+            }).then((movie) => {
+                setAddedNewMovie(true);
+                alert(movie.title + ' has been added');
             });
         }
     }
 
     return (
         <div className="container">
-                <form id="video-form" onSubmit={handleSubmit} autoComplete="off">
+            { addedNewMovie === true ? <Redirect to="/" /> : null }
+                <form id="video-add-form" className="video-form" onSubmit={handleSubmit} autoComplete="off">
                     <div className="row">
                         <div className="col-12">
                             <label htmlFor="title">Title</label><br />
-                            <input type="text" id="title" name="title" value={title} onChange={handleTitleChange} /><br />
+                            <input type="text" id="title" name="title" className="video-form-input" value={title} onChange={handleTitleChange} /><br />
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-12">
                             <label htmlFor="description">Description</label><br />
-                            <input type="text" id="description" name="description" value={description} onChange={handleDescriptionChange} /><br />
+                            <input type="text" id="description" name="description" className="video-form-input" value={description} onChange={handleDescriptionChange} /><br />
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-12">
                             <label htmlFor="video_url">Video URL</label><br />
-                            <input type="text" id="video_url" name="video_url" value={videoUrl} onChange={handleVideoUrlChange} /><br />
+                            <input type="text" id="video_url" name="video_url" className="video-form-input" value={videoUrl} onChange={handleVideoUrlChange} /><br />
                         </div>
                     </div>
                 </form>
                 <div className="row">
                     <div className="col-12">
-                        <button type="submit" form="video-form">Add video</button>
+                        <button type="submit" form="video-add-form" className="btn-add-new video-form-input">Add video</button>
                     </div>
                 </div>
         </div>
