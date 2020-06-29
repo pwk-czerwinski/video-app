@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import SrApi from '../api/SrApi';
-import {NavLink, Redirect} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+import Firebase from '../api/Firebase';
 
 const VideoCreateForm = () => {
     const [title, setTitle] = useState('');
@@ -30,11 +30,11 @@ const VideoCreateForm = () => {
         } else if (videoUrl.length < 21) {
             alert('Video URL too short. Video URL should contain minimum 20 characters.');
         } else {
-            SrApi.addMovie({
+            Firebase.addMovie({
                 title,
                 description,
-                video_url: videoUrl.replace('watch?v=', 'embed/')
-            }).then((movie) => {
+                video_url: videoUrl.includes('watch?v=') ? videoUrl.replace('watch?v=', 'embed/') : videoUrl
+            }).then(movie => {
                 setAddedNewMovie(true);
                 alert(movie.title + ' has been added');
             });

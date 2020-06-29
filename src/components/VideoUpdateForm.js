@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import SrApi from '../api/SrApi';
+import { Redirect } from 'react-router-dom';
+import Firebase from '../api/Firebase';
 
 const VideoUpdateForm = (props) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [videoUrl, setVideoUrl] = useState('');
+    const [updatedMovie, setUpdatedMovie] = useState(false);
 
     const handleTitleChange = (e) => {
         setTitle(e.target.value);
@@ -28,16 +30,19 @@ const VideoUpdateForm = (props) => {
         } else if (videoUrl.length < 21) {
             alert('Video URL too short. Video URL should contain minimum 20 characters.');
         } else {
-            SrApi.updateMovie(props.match.params.id,{
+            Firebase.updateMovie(props.match.params.id,{
                 title,
                 description,
                 video_url: videoUrl
-            }).then(movie => alert(movie.title + ' has been changed'));
+            }).then(movie => {
+                setUpdatedMovie(true);
+                alert(movie.title + ' has been changed')
+            });
         }
     }
 
     useEffect(() => {
-        SrApi.getMovie(props.match.params.id).then(movie => {
+        Firebase.getMovie(props.match.params.id).then(movie => {
             setTitle(movie.title);
             setDescription(movie.description);
             setVideoUrl(movie.video_url);
@@ -46,6 +51,7 @@ const VideoUpdateForm = (props) => {
 
     return (
         <div className="container">
+            { updatedMovie === true ? <Redirect to="/" /> : null }
             <form id="video-edit-form" className="video-form" onSubmit={handleSubmit} autoComplete="off">
                 <label htmlFor="title">Title</label><br />
                 <input type="text" id="title" name="title" className="video-form-input" value={title} onChange={handleTitleChange} /><br />

@@ -1,25 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import Video from './Video';
-import SrApi from '../api/SrApi';
-import {NavLink} from 'react-router-dom';
+import Firebase from '../api/Firebase';
 
 function VideoList() {
     const [ movies, setMovies ] = useState([]);
 
     const deleteMovie = id => {
-        SrApi.getMovie(id).then(movie => {
-            SrApi.deleteMovie(id).then(() => SrApi.getMovies().then(fetchedMovies => {
-                fetchedMovies = fetchedMovies.filter(movie => movie.video_url.includes('youtube') && movie.video_url.length > 20);
-                setMovies(fetchedMovies);
-                alert(movie.title + ' has been deleted');
-            }));
-        })
+        Firebase.deleteMovie(id).then(movie => Firebase.getMovies().then(fetchedMovies => {
+            fetchedMovies = fetchedMovies.filter(movie => movie.video_url.includes('youtube') && movie.video_url.length > 20);
+            setMovies(fetchedMovies);
+            alert(movie.title + ' has been deleted');
+        }));
     }
 
     useEffect(() => {
-        SrApi.getMovies().then(movies => {
-            movies = movies.filter(movie => movie.video_url.includes('youtube') && movie.video_url.length > 20);
-            setMovies(movies)
+        Firebase.getMovies().then(movies => {
+            setMovies(movies);
         });
     }, []);
 

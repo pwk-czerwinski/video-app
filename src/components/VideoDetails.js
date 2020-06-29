@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Video from './Video';
-import SrApi from '../api/SrApi';
+import Firebase from '../api/Firebase';
 
 const VideoDetails = (props) => {
     const [title, setTitle] = useState('');
@@ -8,7 +8,7 @@ const VideoDetails = (props) => {
     const [videoUrl, setVideoUrl] = useState('');
 
     useEffect(() => {
-        SrApi.getMovie(props.match.params.id).then(movie => {
+        Firebase.getMovie(props.match.params.id).then(movie => {
             setTitle(movie.title);
             setDescription(movie.description);
             setVideoUrl(movie.video_url);
