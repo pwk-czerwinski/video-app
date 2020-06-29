@@ -1,5 +1,18 @@
+.container-fluid, .container {
+  color: $off-white;
+}
+
+.video-list {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 .video-item {
   margin-top: 10px;
   margin-bottom: 10px;
+  text-align: center;
+}
+
+.new-video {
   text-align: center;
 }

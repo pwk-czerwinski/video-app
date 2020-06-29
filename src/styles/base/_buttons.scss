@@ -1,0 +1,47 @@
+button {
+  background: mediumpurple;
+  color: white;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  margin: 5px;
+  font-weight: bold;
+}
+
+button:hover {
+  background: rebeccapurple;
+}
+
+.btn-add-new {
+  background: green;
+  width: 250px;
+  height: 50px;
+}
+
+.btn-add-new:hover {
+  background: darkgreen;
+}
+
+.btn-edit {
+  background: orange;
+}
+
+.btn-edit:hover {
+  background: darkorange;
+}
+
+.btn-delete {
+  background: red;
+}
+
+.btn-delete:hover {
+  background: darkred;
+}
+
+.btn-more-details {
+  background: blue;
+}
+
+.btn-more-details:hover {
+  background: darkblue;
+}
