@@ -31,7 +31,7 @@ function VideoList() {
             </div>
             <div className="row video-list">
                 { movies.map(movie =>
-                    <div key={movie.id } className="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 video-item">
+                    <div key={movie.id } className="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 video-item">
                         <Video
                             title={movie.title}
                             description={movie.description}
