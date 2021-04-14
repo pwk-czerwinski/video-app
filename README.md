@@ -1,4 +1,7 @@
-This project was bootstrapped with [Create React VideoApp](https://github.com/facebook/create-react-app).
+# Video App
+
+Demo live version:
+https://my-favourite-videos.herokuapp.com/
 
 ## Available Scripts
 
