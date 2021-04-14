@@ -1,9 +1,9 @@
 import firebase from 'firebase/app';
 import 'firebase/analytics';
 import 'firebase/database';
-import config from './config.json';
+import prepareFirebaseConfig from '../utils/prepareFirebaseConfig';
 
-firebase.initializeApp(config.firebase);
+firebase.initializeApp(prepareFirebaseConfig(process.env));
 firebase.analytics();
 
 const database = firebase.database();
